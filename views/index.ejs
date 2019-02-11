@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>The Index</title>
+        <style>
+            #flash {
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>The Index</h1>
+        <!-- tip to easily see objects printed in full instead of [object Object] -->
+        <h3 id="flash"><%- JSON.stringify(messages) %></h3>
+        <!-- based on the structure of your messages, determine how to display them -->
+        <h5>
+            <% if(messages.registration) { %>
+                <% for (var x of messages.registration) { %>
+                    <h3 id="flash"><%= x %></h3>
+                <% } %>
+            <% } %>
+        </h5>
+        <h3>Add New Task:</h3>
+        <form action="/tasks" method="POST">
+            <label>Title</label>
+            <input type="text" title="title">
+            <label>Description</label>
+            <input type="text" title="description">
+            <input type="submit" value="Submit">
+        </form>
+        <h3>Update a Task:</h3>
+        <form action="/updateATask" method="POST">
+            <label>Old Title</label>
+            <input type="text" title="title">
+            <h5>New title:</h5>
+            <label>New Title</label>
+            <input type="text" title="newTitle">
+            <input type="submit" value="Update">
+        </form>
+        <h3>Delete a Task:</h3>
+        <form action="/deleteATask" method="POST">
+            <label>Title</label>
+            <input type="text" title="title">
+            <label>Description</label>
+            <input type="text" title="description">
+            <input type="submit" value="Delete">
+        </form>
+        <br><br>
+        <h5>Tasks Dictionary: <%= people %></h5>
+        <h3>List of Tasks:</h3>
+        <br>
+        <% for (var x in people) { %>
+            <h5>Title: <%= people[x].title %></h5>
+            <h5>Age: <%= people[x].description %></h5>
+            <br>
+        <% } %>
+    </body>
+</html>
